@@ -80,7 +80,7 @@ function criarCarta(numeroDeCartas) {
 
         mainCartas.appendChild(carta)
 
-
+        carta.setAttribute('onclick', 'viraCarta(this)')
 
     }
 
@@ -89,3 +89,6 @@ function criarCarta(numeroDeCartas) {
 
 // Evento de clicar na carta 
 
+function viraCarta(cartaClicada) {
+    cartaClicada.classList.add('clicada')
+}

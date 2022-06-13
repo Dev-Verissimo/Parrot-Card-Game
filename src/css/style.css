@@ -47,15 +47,11 @@ h1 {
     transform: rotateY(180deg);
   }
 
-  .card:hover .back-face {
+  .clicada .back-face {
     transform: rotateY(0deg);
   }
 
-  .front-face__click {
-    transform: rotateY(-180deg);
-  }
-
-  .card:hover .front-face {
+  .clicada .front-face {
     transform: rotateY(-180deg);
   }
 
@@ -65,4 +61,8 @@ h1 {
   #cartas {
     display: flex;
     flex-wrap: wrap;
+
+    min-height: 70vh;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
   }
