@@ -35,14 +35,14 @@ function embaralhaECriaListaDeCartas() {
         cartasList.push(papagaio)
     }
     console.log(cartasList)
-    
-    
-    cartasList.sort(comparador); 
-    
+
+
+    cartasList.sort(comparador);
+
     function comparador() {
         return Math.random() - 0.5;
     }
-    
+
 }
 
 
@@ -89,6 +89,49 @@ function criarCarta(numeroDeCartas) {
 
 // Evento de clicar na carta 
 
+// Conferir número de cartas clicadas, controle
+
+let primeiraCarta = null
+let segundaCarta = null
+let carta1
+let carta2
+
 function viraCarta(cartaClicada) {
-    cartaClicada.classList.add('clicada')
+
+    if (cartaClicada.classList.contains('clicada')) {
+        return;
+    }
+
+    if (primeiraCarta === null) {
+        carta1 = cartaClicada
+        primeiraCarta = cartaClicada.querySelector('.front-face > img')
+        cartaClicada.classList.add('clicada')
+    } else if (segundaCarta == null) {
+        carta2 = cartaClicada
+        segundaCarta = cartaClicada.querySelector('.front-face > img')
+        cartaClicada.classList.add('clicada')
+
+        if (carta1.innerHTML === carta2.innerHTML) {
+            setTimeout(()=>{
+                alert('Parabéns, você acertou')
+            }, 700)
+            primeiraCarta = null
+            segundaCarta = null
+            carta1 = null
+            carta2 = null 
+        } else {
+            setTimeout(desviraCarta, 1500)
+        }
+    }
+
+}
+
+function desviraCarta() {
+    carta1.classList.remove('clicada')
+    carta2.classList.remove('clicada') 
+    
+    primeiraCarta = null
+    segundaCarta = null
+    carta1 = null
+    carta2 = null 
 }
