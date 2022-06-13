@@ -1,4 +1,5 @@
 let numeroDeCartas = 0
+let numeroDeJogadas = 0
 
 const mainCartas = document.querySelector('#cartas')
 const cards = document.querySelectorAll('.card')
@@ -112,26 +113,49 @@ function viraCarta(cartaClicada) {
         cartaClicada.classList.add('clicada')
 
         if (carta1.innerHTML === carta2.innerHTML) {
-            setTimeout(()=>{
+            setTimeout(() => {
                 alert('Parabéns, você acertou')
             }, 700)
-            primeiraCarta = null
-            segundaCarta = null
-            carta1 = null
-            carta2 = null 
+
+            resetaJogada()
         } else {
             setTimeout(desviraCarta, 1500)
         }
     }
-
 }
 
 function desviraCarta() {
     carta1.classList.remove('clicada')
-    carta2.classList.remove('clicada') 
+    carta2.classList.remove('clicada')
     
+    resetaJogada()
+}
+
+function resetaJogada() {
     primeiraCarta = null
     segundaCarta = null
     carta1 = null
-    carta2 = null 
+    carta2 = null
+
+    numeroDeJogadas++
+    verificaCartasDisponiveis(numeroDeJogadas)
+}
+
+function verificaCartasDisponiveis(numeroDeJogadas) {
+    
+    let quantidadeDeCartasViradas = document.querySelectorAll('.clicada').length
+    if (quantidadeDeCartasViradas == cartasList.length) {
+        alert('Você finalizou a partida com ' + numeroDeJogadas + ' jogadas!! Parabéns')
+        //reiniciarPergunta()
+    }
+}
+
+function reiniciarPergunta() {
+    let resposta = prompt('Deseja reiniciar o jogo?')
+    console.log(resposta == true)
+    if (resposta == 'true') {
+        numeroDeCartas = 0
+        console.log('bora')
+        pegaNumeroDeCartas()
+    }
 }
